@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+        body {
+            text-align: center;
+        }
+        .box {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            height: 400px;
+            margin: 40px auto 0;
+
+        }
+        .box .box1 {
+            display: flex;
+            flex: 1;
+        }
+        .box .box2 {
+            margin: 5px;
+            border-radius: 5px;
+            flex: 1;
+            background-color: orangered;
+        }
+        input {
+            height: 40px;
+            margin-top: 10px;
+            width: 380px;
+           border: 1px solid orangered;
+           background-color: #fff;
+            color: orangered;
+            cursor: pointer;
+        }
+
+        input:hover {
+            background-color: orangered;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            <div class="box2"></div>
+            <div class="box2"></div>
+            <div class="box2"></div>
+        </div>
+        <div class="box1">
+            <div class="box2"></div>
+            <div class="box2"></div>
+            <div class="box2"></div>
+        </div>
+        <div class="box1">
+            <div class="box2"></div>
+            <div class="box2"></div>
+            <div class="box2"></div>
+        </div>
+    </div>
+    <input type="button" value="开始学习" class="open">
+    <br>
+    <input type="button" value="结束学习" class="off">
+
+
+    <script>
+        var box2=document.querySelectorAll('.box .box2');
+        var openbtn=document.querySelector('.open');
+        var offbtn= document.querySelector('.off');
+        function fn(){
+            for (let i = 0; i < box2.length; i++) {
+               box2[i].style.backgroundColor='';
+                
+            }
+        }
+        function random(x){
+            return parseInt( Math.random()*(x+1))
+        }
+        openbtn.onclick=function(){
+            this.time=setInterval(function(){
+                fn()
+                var x = random(8)
+                var y = random(8)
+                var z = random(8)
+                while (x == y || x == z || y == z) {
+                    if (x == y) {
+                        x = random(3)
+                    }
+                    if (z == y) {
+                        z = random(3)
+                    }
+                    if (x == z) {
+                        x = random(3)
+                    }
+                }
+                box2[x].style.backgroundColor = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')'
+                box2[y].style.backgroundColor = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')'
+                box2[z].style.backgroundColor = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')'
+            },1000)
+        }
+        offbtn.onclick=function(){
+            clearInterval(openbtn.time);
+            fn();
+        }
+    </script>
+</body>
+</html>
