@@ -85,6 +85,7 @@
             return parseInt( Math.random()*(x+1))
         }
         openbtn.onclick=function(){
+            clearInterval(this.time);
             this.time=setInterval(function(){
                 fn()
                 var x = random(8)
